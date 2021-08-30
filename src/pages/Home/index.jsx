@@ -7,7 +7,7 @@ import logo from '../../assets/logo.svg'
 
 import { Container, Carousel, Search, Logo, Wrapper, Map, CarouselTitle} from './styles'
 import restaurante from '../../assets/restaurante-fake.png'
-import { Card } from '../../components';
+import { Card , RestaurantCard} from '../../components';
 
 const Home = () => {
     const [inputValue, setImputValue] = useState('')
@@ -35,14 +35,15 @@ const Home = () => {
                     <Input value={inputValue} onChange={(e) =>  setImputValue(e.target.value)} />
                 </TextField>
                 <CarouselTitle>Na sua Área</CarouselTitle>
+                <Carousel {...settings}>
+                    <Card photo={restaurante} title="nome generico"/>
+                    <Card photo={restaurante} title="nome generico"/>
+                    <Card photo={restaurante} title="nome generico"/>
+                    <Card photo={restaurante} title="nome generico"/>
+                    <Card photo={restaurante} title="nome generico"/>
+                </Carousel>
             </Search>
-            <Carousel {...settings}>
-                <Card photo={restaurante} title="nome generico"/>
-                <Card photo={restaurante} title="nome generico"/>
-                <Card photo={restaurante} title="nome generico"/>
-                <Card photo={restaurante} title="nome generico"/>
-                <Card photo={restaurante} title="nome generico"/>
-            </Carousel>
+            <RestaurantCard/>
         </Container>
         <Map />
     </Wrapper>
