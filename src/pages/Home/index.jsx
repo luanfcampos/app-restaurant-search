@@ -8,9 +8,11 @@ import logo from '../../assets/logo.svg'
 import { Container, Carousel, Search, Logo, Wrapper, Map, CarouselTitle} from './styles'
 import restaurante from '../../assets/restaurante-fake.png'
 import { Card , RestaurantCard} from '../../components';
+import { Modal } from '../../components'
 
 const Home = () => {
     const [inputValue, setImputValue] = useState('')
+    const [modalOpened, setModalOpened] = useState(true)
 
     const settings = {
         dots: false,
@@ -19,7 +21,7 @@ const Home = () => {
         slidesToShow: 4,
         slidesToScroll: 4,
         adaptiveHeight: true,
-    };
+    }
 
     return (
     <Wrapper>
@@ -42,10 +44,12 @@ const Home = () => {
                     <Card photo={restaurante} title="nome generico"/>
                     <Card photo={restaurante} title="nome generico"/>
                 </Carousel>
+
             </Search>
             <RestaurantCard/>
         </Container>
         <Map />
+        <Modal open={modalOpened} onClose={() => setModalOpened(!modalOpened)} />
     </Wrapper>
     )
 }
