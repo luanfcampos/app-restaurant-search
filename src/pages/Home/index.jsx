@@ -5,13 +5,13 @@ import MaterialIcon from '@material/react-material-icon'
 
 import logo from '../../assets/logo.svg'
 
-import { Container, Carousel, Search, Logo, Wrapper, Map, CarouselTitle} from './styles'
+import { Container, Carousel, Search, Logo, Wrapper, CarouselTitle} from './styles'
 import restaurante from '../../assets/restaurante-fake.png'
-import { Card , RestaurantCard} from '../../components';
-import { Modal } from '../../components'
+import { Card , RestaurantCard, Modal, Map } from '../../components';
 
 const Home = () => {
     const [inputValue, setImputValue] = useState('')
+    const [query, setQuery] = useState(null)
     const [modalOpened, setModalOpened] = useState(true)
 
     const settings = {
@@ -21,6 +21,12 @@ const Home = () => {
         slidesToShow: 4,
         slidesToScroll: 4,
         adaptiveHeight: true,
+    }
+
+    function handleKeyPress(e) {
+        if (e.key === 'Enter') {
+            setQuery(inputValue)
+        }
     }
 
     return (
@@ -34,7 +40,11 @@ const Home = () => {
                     onTrailingIconSelect={() => this.setState({value: ''})}
                     trailingIcon={<MaterialIcon role="button" icon="search"/>}
                     >
-                    <Input value={inputValue} onChange={(e) =>  setImputValue(e.target.value)} />
+                    <Input 
+                    value={inputValue} 
+                    onKeyPress={handleKeyPress} 
+                    onChange={(e) =>  setImputValue(e.target.value)}
+                    />
                 </TextField>
                 <CarouselTitle>Na sua Área</CarouselTitle>
                 <Carousel {...settings}>
@@ -48,8 +58,8 @@ const Home = () => {
             </Search>
             <RestaurantCard/>
         </Container>
-        <Map />
-        <Modal open={modalOpened} onClose={() => setModalOpened(!modalOpened)} />
+        <Map query={query} />
+        {/* <Modal open={modalOpened} onClose={() => setModalOpened(!modalOpened)} /> */}
     </Wrapper>
     )
 }
