@@ -1,4 +1,4 @@
-import { CreatStore } from 'redux'
+import { CreateStore } from 'redux'
 
 import rootReducer from './reducers'
 
